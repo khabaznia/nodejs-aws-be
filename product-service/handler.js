@@ -1,18 +1,50 @@
 'use strict';
 
-module.exports.hello = async (event) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
+module.exports.products = async (event) => {
+    return {
+        statusCode: 200,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': true
+        },
+        body: JSON.stringify(
+            [
+                {
+                    id: "1",
+                    title: "Flower 1",
+                    description: "Description for flower 1",
+                    image: "https://picsum.photos/200/300",
+                    price: 2
+                },
+                {
+                    id: "2",
+                    title: "Flower 2",
+                    description: "Description for flower 2",
+                    image: "https://picsum.photos/200/300",
+                    price: 3
+                }
+            ]
+        ),
+    };
+};
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
+module.exports.product = async (event) => {
+    const id = event.id
+    console.log(id)
+    return {
+        statusCode: 200,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': true
+        },
+        body: JSON.stringify(
+            {
+                id: "2",
+                title: "Flower 2",
+                description: "Description for flower 2",
+                image: "https://picsum.photos/200/300",
+                price: 3
+            }
+        ),
+    };
 };

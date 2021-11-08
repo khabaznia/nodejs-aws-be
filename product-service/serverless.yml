@@ -26,7 +26,27 @@ provider:
   lambdaHashingVersion: 20201221
 
   stage: dev
-  region: eu-east-1
+  region: us-east-1
+
+functions:
+  products:
+    handler: handler.products
+    events:
+      - http:
+          path: /products
+          method: get
+          cors:
+            origin: '*'
+            headers: '*'
+  product:
+    handler: handler.product
+    events:
+      - http:
+          path: /product
+          method: get
+          cors:
+            origin: '*'
+            headers: '*'
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -56,9 +76,6 @@ provider:
 #    - include-me.js
 #    - include-me-dir/**
 
-functions:
-  hello:
-    handler: handler.hello
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
