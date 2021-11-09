@@ -1,0 +1,72 @@
+swagger: "2.0"
+info:
+  title: Shop documentation
+  version: 1.0.0
+
+paths:
+  /products:
+    get:
+      summary: Returns a list of products in the shop.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: 1
+                count:
+                  type: number
+                  example: 2
+                description:
+                  type: string
+                  example: Some description of tulip
+                price:
+                  type: number
+                  example: 15
+                title:
+                  type: string
+                  example: Tulip
+  /products/{productId}:
+    get:
+      summary: Returns a product by product ID
+      parameters:
+        - in: path
+          name: productId
+          required: true
+          type: string
+          description: Product Id
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                example: 01
+              count:
+                type: number
+                example: 2
+              description:
+                type: string
+                example: Some tulip description
+              price:
+                type: number
+                example: 1500
+              title:
+                type: string
+                example: Tulip
+        400:
+          description: The specified ID is invalid
+        404:
+          description: A product with the specified ID was not found
+        default:
+          description: Unexpected error
