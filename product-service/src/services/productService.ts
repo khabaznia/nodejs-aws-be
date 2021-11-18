@@ -1,4 +1,4 @@
-import productList from "src/services/productList.json";
+import productList from 'src/services/productList.json'
 
 export interface Product {
     id: string
@@ -9,5 +9,5 @@ export interface Product {
     count: number
 }
 
-export const getProductById = (id: string): Product => productList.find(product => product.id === id);
-export const getAllProducts = (): Product[] => productList;
+export const getProductById = (id: string): Product => productList.find(product => product.id === id)
+export const getAllProducts = (): Product[] => productList

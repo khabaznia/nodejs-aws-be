@@ -1,23 +1,23 @@
-import type { AWS } from '@serverless/typescript';
+import type { AWS } from '@serverless/typescript'
 
-import getProductList from "@functions/getProductList";
-import getProductById from "@functions/getProductById";
+import getProductList from './src/functions/getProductList'
+import getProductById from './src/functions/getProductById'
 
 const serverlessConfiguration: AWS = {
   service: 'product-service',
   frameworkVersion: '2',
   custom: {
     webpack: {
-      webpackConfig: "./webpack.config.js",
+      webpackConfig: './webpack.config.js',
       includeModules: true,
     },
   },
-  plugins: ["serverless-webpack"],
+  plugins: ['serverless-webpack'],
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
-    region: "us-east-1",
-    stage: "dev",
+    region: 'us-east-1',
+    stage: 'dev',
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
@@ -30,6 +30,6 @@ const serverlessConfiguration: AWS = {
   },
   // import the function via paths
   functions: { getProductList, getProductById }
-};
+}
 
-module.exports = serverlessConfiguration;
+module.exports = serverlessConfiguration
