@@ -1,10 +1,10 @@
-import {middyfy} from "@libs/lambda";
-import {getAllProducts} from "../../services/productService";
-import {formatJSONResponse} from "@libs/apiGateway";
+import { middyfy } from '@libs/lambda'
+import { getAllProducts } from '../../services/productService'
+import { executeAction } from '../../util/actionHandler'
 
 const getProductList = async (event) => {
-  console.log(event);
-  return formatJSONResponse(getAllProducts());
+  console.log(`Got event -> ${event}`)
+  return await executeAction(getAllProducts)
 }
 
-export const main = middyfy(getProductList);
+export const main = middyfy(getProductList)
