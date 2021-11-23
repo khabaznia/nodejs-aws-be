@@ -10,5 +10,5 @@ module.exports.importFileParser = async (event) => {
   await importFileParser(event)
 }
 module.exports.importProductsFile = async (event) => {
-  await importProductsFile(event)
+  return await importProductsFile(event)
 }

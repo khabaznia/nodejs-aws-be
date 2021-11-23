@@ -27,19 +27,19 @@ functions:
     handler: handler.importProductsFile
     events:
       - http:
-          method: "get"
-          path: "import"
-          cors: true
-          request:
-            parameters:
-              querystrings:
-                name: true
+        method: "get"
+        path: "import"
+        cors: true
+        request:
+          parameters:
+            querystrings:
+              name: true
   importFileParser:
     handler: handler.importFileParser
     events:
       - s3:
-          bucket: product-bucket-be
-          event: s3:ObjectCreated:*
-          rules:
-            - prefix: uploaded/
-          existing: true
+        bucket: product-bucket-be
+        event: s3:ObjectCreated:*
+        rules:
+          - prefix: uploaded/
+        existing: true

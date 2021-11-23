@@ -6,11 +6,11 @@ function headers () {
   }
 }
 
-module.exports.buildResponse = (body) => {
+module.exports.buildResponse = (url) => {
   return {
     statusCode: 202,
     headers: headers(),
-    body: body
+    body: JSON.stringify(String(url))
   }
 }
 
