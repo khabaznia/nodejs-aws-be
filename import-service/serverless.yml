@@ -1,0 +1,45 @@
+
+service: import-service
+frameworkVersion: '2'
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  profile: default
+  region: us-east-1
+  lambdaHashingVersion: 20201221
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:ListBucket"
+      Resource:
+        - "arn:aws:s3:::product-bucket-be"
+    - Effect: "Allow"
+      Action:
+        - "s3:*"
+      Resource:
+        - "arn:aws:s3:::product-bucket-be/*"
+
+
+functions:
+  importProductsFile:
+    handler: handler.importProductsFile
+    events:
+      - http:
+        method: "get"
+        path: "import"
+        cors: true
+        request:
+          parameters:
+            querystrings:
+              name: true
+  importFileParser:
+    handler: handler.importFileParser
+    events:
+      - s3:
+        bucket: product-bucket-be
+        event: s3:ObjectCreated:*
+        rules:
+          - prefix: uploaded/
+        existing: true
